@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T04 실패 재생 콘솔 — 오늘의 진짜 정보판</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <main class="room">
+    <header class="page-head">
+      <h1>T04 실패 재생 콘솔</h1>
+      <p class="page-sub">
+        합성 fixture로 느림·401/403·호출 제한·오프라인·형식 변경 다섯 가지 실패와 회복을 그대로 재생합니다.
+        여기서 쓰는 값은 전부 가상 시계·가상 값이며, <a href="index.html">실시간 정보판</a>과는 분리되어 있습니다.
+      </p>
+    </header>
+
+    <section class="scenario-panel">
+      <h2>정상 시퀀스</h2>
+      <p class="panel-sub">가상 1일차 두 번 조회(같은 행 갱신) → 가상 2일차 조회(새 행 + 전일 대비 +15)</p>
+      <button class="btn btn-normal" data-scenario="normal">정상 시퀀스 재생 (D1-A → D1-B → D2)</button>
+    </section>
+
+    <section class="scenario-panel">
+      <h2>다섯 가지 실패</h2>
+      <p class="panel-sub">모두 기준선(D1-A → D1-B, 저장값 105)을 먼저 만든 뒤 실패 fixture 하나를 재생합니다.</p>
+      <div class="btn-grid">
+        <button class="btn btn-fail" data-scenario="fail" data-fixture="T04-TIMEOUT">① 느린 응답 (timeout)</button>
+        <button class="btn btn-fail" data-scenario="fail" data-fixture="T04-AUTH-401">② 인증 거절 (401)</button>
+        <button class="btn btn-fail" data-scenario="fail" data-fixture="T04-RATE-429">③ 호출 제한 (429)</button>
+        <button class="btn btn-fail" data-scenario="fail" data-fixture="T04-OFFLINE">④ 오프라인</button>
+        <button class="btn btn-fail" data-scenario="fail" data-fixture="T04-SCHEMA-BREAK">⑤ 형식 변경 (schema break)</button>
+      </div>
+    </section>
+
+    <section class="scenario-panel">
+      <h2>오류 뒤 회복</h2>
+      <p class="panel-sub">기준선 → timeout 실패 → 다시 시도(T04-RECOVER-D2) 순서로 재생합니다.</p>
+      <button class="btn btn-recover" data-scenario="recover">회복 시퀀스 재생 (timeout → 다시 시도)</button>
+    </section>
+
+    <section class="console-panel">
+      <div class="console-head">
+        <h2>재생 로그</h2>
+        <button class="btn btn-ghost" id="clearLog">지우기</button>
+      </div>
+      <div id="log" class="console-log">
+        <p class="console-empty">위 버튼을 눌러 시나리오를 재생하면 여기에 단계별 결과가 쌓입니다.</p>
+      </div>
+    </section>
+
+    <footer class="page-foot">
+      <p>fixture 계약: <code>contract-version 1.1.0</code> · 데이터는 전부 synthetic-only</p>
+    </footer>
+  </main>
+
+<script src="lib/adapter.js"></script>
+<script src="test.js"></script>
+</body>
+</html>

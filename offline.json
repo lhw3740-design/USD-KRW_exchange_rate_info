@@ -1,0 +1,22 @@
+{
+  "fixture_id": "T04-OFFLINE",
+  "contract_version": "1.1.0",
+  "description_ko": "네트워크 연결 중단: 마지막 정상값을 보존하고 offline을 기록한다.",
+  "virtual_now": "2026-08-24T10:03:00.000Z",
+  "transport": {
+    "mode": "offline",
+    "status": null,
+    "delay_ms": 0,
+    "deadline_ms": 1500,
+    "headers": {}
+  },
+  "payload": null,
+  "expected": {
+    "freshness": "stale",
+    "error_code": "offline",
+    "row_count": 1,
+    "stored_value": 105,
+    "delta": null,
+    "preserve_last_good": true
+  }
+}
