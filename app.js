@@ -1,5 +1,5 @@
 const SOURCE_URL = "https://api.frankfurter.dev/v2/rate/USD/KRW";
-const DATA_URL = "data/rates.json";
+const DATA_URL = "data/rates.json?v=" + Date.now();
 const TIMEZONE = "Asia/Seoul";
 
 const $ = (id) => document.getElementById(id);
