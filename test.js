@@ -126,6 +126,42 @@ async function playNormal() {
   logStep(d2, state);
 }
 
+async function playDedupe() {
+  logSeparator("카드4 — 같은 날짜 3회 → 다음 날짜 1회 재생 시작 (reset)");
+  state = T04Adapter.resetEvaluationState();
+  const rowCounts = [];
+
+  const a = await loadFixture("T04-NORMAL-D1-A");
+  state = T04Adapter.runFixture(state, a);
+  logStep(a, state);
+  rowCounts.push(T04Adapter.rowCountFor(state, SIGNAL_ID));
+
+  const b = await loadFixture("T04-NORMAL-D1-B");
+  state = T04Adapter.runFixture(state, b);
+  logStep(b, state);
+  rowCounts.push(T04Adapter.rowCountFor(state, SIGNAL_ID));
+
+  // 같은 날짜 세 번째 재실행 — 별도 fixture 없이 D1-B를 다시 재생해 "같은 날 재실행"을 한 번 더 시험한다.
+  state = T04Adapter.runFixture(state, b);
+  logStep(b, state, { isRetry: true });
+  rowCounts.push(T04Adapter.rowCountFor(state, SIGNAL_ID));
+
+  const d2 = await loadFixture("T04-NORMAL-D2");
+  state = T04Adapter.runFixture(state, d2);
+  logStep(d2, state);
+  rowCounts.push(T04Adapter.rowCountFor(state, SIGNAL_ID));
+
+  const div = document.createElement("div");
+  div.className = "step " + (rowCounts.join(",") === "1,1,1,2" ? "pass" : "fail");
+  div.innerHTML = `
+    <div class="step-title">같은 날 재실행 전후 행 수 요약</div>
+    <div class="step-body">1회차(D1-A)=${rowCounts[0]}건 → 2회차(D1-B)=${rowCounts[1]}건 → 3회차(D1-B 재실행)=${rowCounts[2]}건 → 다음 날짜(D2)=${rowCounts[3]}건</div>
+    <div class="step-match ${rowCounts.join(",") === "1,1,1,2" ? "ok" : "mismatch"}">${rowCounts.join(",") === "1,1,1,2" ? "✓ 같은 날 세 번은 1건, 다음 날은 2건으로 정확히 갈립니다." : "✗ 예상과 다릅니다."}</div>
+  `;
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
 async function playFail(fixtureId) {
   logSeparator(`실패 재생 시작: ${FAIL_LABELS[fixtureId]} (기준선 → 실패, reset)`);
   await runBaseline();
@@ -171,6 +207,7 @@ document.querySelectorAll("button[data-scenario]").forEach((btn) => {
     "click",
     withBusyGuard(btn, async () => {
       if (scenario === "normal") await playNormal();
+      else if (scenario === "dedupe") await playDedupe();
       else if (scenario === "fail") await playFail(fixtureId);
       else if (scenario === "recover") await playRecover();
     })
@@ -187,6 +224,7 @@ document.getElementById("clearLog").addEventListener("click", () => {
 window.T04Test = {
   getState: () => state,
   playNormal,
+  playDedupe,
   playFail,
   playRecover,
   retry,
