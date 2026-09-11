@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘의 진짜 정보판 — USD/KRW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="room">
+    <header class="page-head">
+      <h1>오늘의 진짜 정보판</h1>
+      <p class="page-sub">값 하나를 매일 기록하고, 어제와 비교하고, 안 올 때는 안 온다고 말합니다.</p>
+    </header>
+
+    <section class="board" id="board" aria-live="polite">
+
+      <div class="board-row board-top">
+        <span class="board-label">1 USD =</span>
+        <div class="flap-group" id="flapGroup" aria-label="환율 값"></div>
+        <span class="board-unit" id="unitLabel">KRW</span>
+      </div>
+
+      <div class="board-status" id="statusLine">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">조회 중…</span>
+      </div>
+
+      <dl class="board-meta">
+        <div class="meta-item">
+          <dt>출처</dt>
+          <dd id="metaSource">—</dd>
+        </div>
+        <div class="meta-item">
+          <dt>출처 시각(값 기준일)</dt>
+          <dd id="metaSourceDate">—</dd>
+        </div>
+        <div class="meta-item">
+          <dt>조회 시각</dt>
+          <dd id="metaFetchedAt">—</dd>
+        </div>
+        <div class="meta-item">
+          <dt>기준 시간대</dt>
+          <dd id="metaTz">Asia/Seoul (KST, UTC+9)</dd>
+        </div>
+      </dl>
+
+      <p class="board-note" id="boardNote"></p>
+    </section>
+
+    <section class="evidence">
+      <h2>원자료 · 저장값 · 화면값 대조</h2>
+      <p class="evidence-sub">API가 방금 돌려준 값, 저장소(<code>data/rates.json</code>)에 커밋되어 있는 값, 화면에 보이는 값이 실제로 같은지 그 자리에서 확인합니다.</p>
+      <table class="evidence-table" id="evidenceTable">
+        <thead>
+          <tr><th>구분</th><th>값</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>원자료 (API 실시간 응답)</td>
+            <td id="evRaw">—</td>
+          </tr>
+          <tr>
+            <td>저장값 (data/rates.json)</td>
+            <td id="evStored">—</td>
+          </tr>
+          <tr>
+            <td>화면값 (위 정보판에 표시된 값)</td>
+            <td id="evScreen">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="evidence-result" id="evidenceResult">확인 중…</p>
+    </section>
+
+    <section class="log">
+      <h2>일별 기록</h2>
+      <p class="log-sub">서로 다른 날짜에 저장된 값입니다. 매일 실제로 이 페이지에서 값을 확인하고 <code>data/rates.json</code>에 직접 추가합니다.</p>
+      <table class="log-table" id="logTable">
+        <thead>
+          <tr><th>날짜</th><th>1 USD당 KRW</th><th>전일 대비</th><th>기록 시각(KST)</th></tr>
+        </thead>
+        <tbody id="logBody">
+        </tbody>
+      </table>
+    </section>
+
+    <footer class="page-foot">
+      <p>비밀키 없이 호출: <code id="sourceUrlText">https://api.frankfurter.dev/v2/rate/USD/KRW</code></p>
+    </footer>
+  </main>
+
+<script src="app.js"></script>
+</body>
+</html>

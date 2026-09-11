@@ -1,0 +1,14 @@
+{
+  "unit": "KRW per 1 USD",
+  "source_name": "Frankfurter (ECB 참조환율 기반)",
+  "source_url": "https://api.frankfurter.dev/v2/rate/USD/KRW",
+  "timezone": "Asia/Seoul (KST, UTC+9)",
+  "last_good": {
+    "date": "2026-09-10",
+    "rate": 1340.61,
+    "fetched_at": "2026-09-11T10:14:00+09:00"
+  },
+  "history": [
+    { "date": "2026-09-10", "rate": 1340.61, "fetched_at": "2026-09-11T10:14:00+09:00" }
+  ]
+}
