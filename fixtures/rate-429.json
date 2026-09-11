@@ -1,0 +1,22 @@
+{
+  "fixture_id": "T04-RATE-429",
+  "contract_version": "1.1.0",
+  "description_ko": "외부 출처의 호출 제한 응답: rate_limit과 Retry-After 관측값을 기록한다.",
+  "virtual_now": "2026-08-24T10:02:00.000Z",
+  "transport": {
+    "mode": "http",
+    "status": 429,
+    "delay_ms": 20,
+    "deadline_ms": 1500,
+    "headers": { "content-type": "application/json", "retry-after": "60" }
+  },
+  "payload": { "message": "rate limited synthetic fixture" },
+  "expected": {
+    "freshness": "stale",
+    "error_code": "rate_limit",
+    "row_count": 1,
+    "stored_value": 105,
+    "delta": null,
+    "preserve_last_good": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "fixture_id": "T04-RECOVER-D2",
+  "contract_version": "1.1.0",
+  "description_ko": "오류 뒤 가상 2일차 재시도 성공: fresh/none으로 회복하고 전일 대비 +15를 만든다.",
+  "virtual_now": "2026-08-25T00:00:00.000Z",
+  "transport": {
+    "mode": "http",
+    "status": 200,
+    "delay_ms": 20,
+    "deadline_ms": 1500,
+    "headers": { "content-type": "application/json" }
+  },
+  "payload": {
+    "signal_id": "aleph-demo-index",
+    "normalized_value": 120,
+    "unit": "pt",
+    "source_name": "ALEPH 결정론 replay",
+    "source_url": "https://fixtures.aleph.invalid/t04/demo-index",
+    "source_time": "2026-08-24T23:59:00.000Z",
+    "fetched_at": "2026-08-25T00:00:00.000Z",
+    "record_timezone": "Asia/Seoul",
+    "record_date": "2026-08-25"
+  },
+  "expected": {
+    "freshness": "fresh",
+    "error_code": "none",
+    "row_count": 2,
+    "stored_value": 120,
+    "delta": 15,
+    "preserve_last_good": true,
+    "record_date": "2026-08-25"
+  }
+}

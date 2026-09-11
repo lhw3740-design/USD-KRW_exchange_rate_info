@@ -1,0 +1,34 @@
+{
+  "fixture_id": "T04-NORMAL-D1-B",
+  "contract_version": "1.1.0",
+  "description_ko": "가상 1일차 두 번째 정상 조회: 새 행 없이 같은 행을 갱신한다.",
+  "virtual_now": "2026-08-24T09:00:00.000Z",
+  "transport": {
+    "mode": "http",
+    "status": 200,
+    "delay_ms": 20,
+    "deadline_ms": 1500,
+    "headers": { "content-type": "application/json" }
+  },
+  "payload": {
+    "signal_id": "aleph-demo-index",
+    "normalized_value": 105,
+    "unit": "pt",
+    "source_name": "ALEPH 결정론 replay",
+    "source_url": "https://fixtures.aleph.invalid/t04/demo-index",
+    "source_time": null,
+    "fetched_at": "2026-08-24T09:00:00.000Z",
+    "record_timezone": "Asia/Seoul",
+    "record_date": "2026-08-24"
+  },
+  "expected": {
+    "freshness": "fresh",
+    "error_code": "none",
+    "row_count": 1,
+    "stored_value": 105,
+    "delta": null,
+    "preserve_last_good": true,
+    "same_record_id_as": "T04-NORMAL-D1-A",
+    "record_date": "2026-08-24"
+  }
+}

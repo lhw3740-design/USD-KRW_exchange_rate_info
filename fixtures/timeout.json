@@ -1,0 +1,22 @@
+{
+  "fixture_id": "T04-TIMEOUT",
+  "contract_version": "1.1.0",
+  "description_ko": "제한시간보다 늦은 응답: 마지막 정상값을 보존하고 timeout을 기록한다.",
+  "virtual_now": "2026-08-24T10:00:00.000Z",
+  "transport": {
+    "mode": "timeout",
+    "status": null,
+    "delay_ms": 5000,
+    "deadline_ms": 1500,
+    "headers": {}
+  },
+  "payload": null,
+  "expected": {
+    "freshness": "stale",
+    "error_code": "timeout",
+    "row_count": 1,
+    "stored_value": 105,
+    "delta": null,
+    "preserve_last_good": true
+  }
+}
