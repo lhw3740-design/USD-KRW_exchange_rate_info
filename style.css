@@ -185,7 +185,33 @@ body{
   font-size: 1rem;
   margin: 0 0 6px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.evidence-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--slate-dim);
+}
+.evidence-badge .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--slate);
+  flex: none;
+}
+.evidence-badge.match .dot{ background: var(--green); box-shadow: 0 0 6px var(--green); }
+.evidence-badge.mismatch .dot{ background: var(--red); box-shadow: 0 0 6px var(--red); }
+.evidence-badge.unknown .dot{ background: var(--slate); }
+.evidence-badge.match .label{ color: var(--green); }
+.evidence-badge.mismatch .label{ color: var(--red); }
+.evidence-badge.unknown .label{ color: var(--slate-dim); }
 .evidence-sub, .log-sub{
   margin: 0 0 16px;
   font-size: 0.85rem;
