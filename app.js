@@ -86,10 +86,23 @@ function renderLog(history) {
   });
 }
 
+// 판정 순수 함수는 lib/evidence-badge.js (EvidenceBadge.evidenceBadgeState)로 분리됨.
+const { evidenceBadgeState } = EvidenceBadge;
+
+function setEvidenceBadge(state) {
+  const badge = $("evidenceBadge");
+  if (!badge) return;
+  badge.className = "evidence-badge " + state.kind;
+  const label = badge.querySelector(".label");
+  if (label) label.textContent = state.label;
+}
+
 function renderEvidence({ raw, stored, screen }) {
   $("evRaw").textContent = raw != null ? raw.toFixed(2) : "불러오지 못함";
   $("evStored").textContent = stored != null ? stored.toFixed(2) : "기록 없음";
   $("evScreen").textContent = screen != null ? screen.toFixed(2) : "—";
+
+  setEvidenceBadge(evidenceBadgeState({ raw, stored, screen }));
 
   const result = $("evidenceResult");
   if (raw != null && stored != null && screen != null &&
