@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>과제5 — 대조 배지 검사 T-01~T-10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <main class="room">
+    <header class="page-head">
+      <h1>과제5 — 대조 배지 검사 (T-01 ~ T-10)</h1>
+      <p class="page-sub">
+        저장값-화면값 대조 배지(<code>lib/evidence-badge.js</code>)가 고정 검사 10개를 모두 통과하는지
+        페이지를 열자마자 자동으로 채점합니다. 대화 전문이나 별도 설명 없이, 이 페이지와 저장소 코드만으로
+        같은 결과가 재현되어야 합니다. 공통 사용 상한: AI A/B 각각 시간 60분, 호출 20회.
+      </p>
+    </header>
+
+    <section class="console-panel">
+      <div class="console-head">
+        <h2 id="summaryTitle">채점 중…</h2>
+      </div>
+      <div id="log" class="console-log"></div>
+    </section>
+
+    <footer class="page-foot">
+      <p>오차 허용 기준: 0.0001 · 대상 함수: <code>EvidenceBadge.evidenceBadgeState()</code></p>
+    </footer>
+  </main>
+
+<script src="lib/evidence-badge.js"></script>
+<script src="badge-test.js"></script>
+</body>
+</html>
