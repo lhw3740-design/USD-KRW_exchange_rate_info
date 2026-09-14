@@ -53,7 +53,12 @@
     </section>
 
     <section class="evidence">
-      <h2>원자료 · 저장값 · 화면값 대조</h2>
+      <h2>
+        원자료 · 저장값 · 화면값 대조
+        <span class="evidence-badge" id="evidenceBadge">
+          <span class="dot"></span><span class="label">확인 중…</span>
+        </span>
+      </h2>
       <p class="evidence-sub">API가 방금 돌려준 값, 저장소(<code>data/rates.json</code>)에 커밋되어 있는 값, 화면에 보이는 값이 실제로 같은지 그 자리에서 확인합니다.</p>
       <table class="evidence-table" id="evidenceTable">
         <thead>
@@ -92,9 +97,11 @@
     <footer class="page-foot">
       <p>비밀키 없이 호출: <code id="sourceUrlText">https://api.frankfurter.dev/v2/rate/USD/KRW</code></p>
       <p><a href="test.html">다섯 가지 실패 재생 콘솔 →</a></p>
+      <p><a href="badge-test.html">대조 배지 검사 T-01~T-10 →</a></p>
     </footer>
   </main>
 
+<script src="lib/evidence-badge.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
