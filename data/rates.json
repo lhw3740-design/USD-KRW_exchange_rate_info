@@ -4,9 +4,9 @@
   "source_url": "https://api.frankfurter.dev/v2/rate/USD/KRW",
   "timezone": "Asia/Seoul (KST, UTC+9)",
   "last_good": {
-    "date": "2026-09-11",
-    "rate": 1340.83,
-    "fetched_at": "2026-09-11T11:54:29+09:00"
+    "date": "2026-09-14",
+    "rate": 1343.48,
+    "fetched_at": "2026-09-14T12:47:29+09:00"
   },
   "history": [
     {
@@ -18,6 +18,11 @@
       "date": "2026-09-11",
       "rate": 1340.83,
       "fetched_at": "2026-09-11T11:54:29+09:00"
+    },
+    {
+      "date": "2026-09-14",
+      "rate": 1343.48,
+      "fetched_at": "2026-09-14T12:47:29+09:00"
     }
   ]
 }
